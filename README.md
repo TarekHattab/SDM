@@ -1,9 +1,5 @@
 SDM
 ================
-Frida Ben Rais Lasram, Tarek Hattab, Quentin Nogues, Grégory Beaugrand,
-Jean Claude Dauvin, Ghassen Halouani, François Le Loc’h, Nathalie Niquil
-& Boris Leroy
-29 avril 2019
 
 This R script accompanies the The following research article:
 
@@ -283,7 +279,8 @@ spplot(Vertical.r,main="Environnemental backgound (0-200m)",xlab="Temperature",y
 ```
 
 <img src="SDM_files/figure-gfm/unnamed-chunk-14-3.png" style="display: block; margin: auto;" />
-\#\#\# Download occurrences data
+
+### Download occurrences data
 
 Species occurrences data can be obtained from 5 global biogeographic
 database (see *step 2* in model framework section in Ben Rais Lasram et
@@ -383,7 +380,8 @@ plot(OCC,add=T,col=2,cex=0.3,pch=15)
 ```
 
 <img src="SDM_files/figure-gfm/unnamed-chunk-15-1.png" style="display: block; margin: auto;" />
-\#\#\# Match up
+
+### Match up
 
 A spatiotemporal match-up between climatic climatologies and species
 occurrences is realised taking into account, the geographic coordinates
