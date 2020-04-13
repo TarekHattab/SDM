@@ -1,7 +1,7 @@
 SDM
 ================
 
-This R script accompanies the The following research article:
+This R script accompanies the following research article:
 
 Frida Ben Rais Lasram, Tarek Hattab, Quentin Nogues, Grégory Beaugrand,
 Jean Claude Dauvin, Ghassen Halouani, François Le Loc’h, Nathalie
