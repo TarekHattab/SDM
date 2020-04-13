@@ -285,11 +285,11 @@ spplot(Vertical.r,main="Environnemental backgound (0-200m)",xlab="Temperature",y
 Species occurrences data can be obtained from 5 global biogeographic
 database (see *step 2* in model framework section in Ben Rais Lasram et
 al (2020)): 
-*OBIS (Ocean Biogeographic Information System) <http://www.iobis.org/> 
-*GBIF (Global Biodiversity Information Facility) <http://www.gbif.org/> 
-*iNaturalist (A Community for Naturalists) <http://www.inaturalist.org> 
-*VertNet (vertebrate biodiversity networks) <http://vertnet.org/> 
-*Ecoengine (UC Berkeley’s Natural History Data)‘<https://ecoengine.berkeley.edu/>
+OBIS (Ocean Biogeographic Information System) <http://www.iobis.org/> 
+GBIF (Global Biodiversity Information Facility) <http://www.gbif.org/> 
+iNaturalist (A Community for Naturalists) <http://www.inaturalist.org> 
+VertNet (vertebrate biodiversity networks) <http://vertnet.org/> 
+Ecoengine (UC Berkeley’s Natural History Data)‘<https://ecoengine.berkeley.edu/>
 
 ``` r
 data <- data.frame(Species=Species,Vertical_habitat)
