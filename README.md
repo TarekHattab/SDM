@@ -32,7 +32,7 @@ docker run -d -p 8787:8787 -e PASSWORD="secret" tarek1984/r-enm:0.0.1
 The command will print the ID of the new container and exit. Now you can
 open your browser at <http://localhost:8787>, enter “rstudio” as
 unsername, and “secret” as password. If you are running a Mac or Windows machine
-open a browser and enter ' http:// ' followed by your ip address, followed by ' :8787 '.
+open a browser and enter 'http://' followed by your ip address, followed by ':8787'.
 
 ### Load required libraries
 
