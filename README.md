@@ -26,7 +26,7 @@ Then you will have to run an image of RStudio Server containing all the
 R packages and their system dependencies.
 
 ``` r
-docker run -d -p 8787:8787 -e PASSWORD="secret" tarek1984/r-enm
+docker run -d -p 8787:8787 -e PASSWORD="secret" tarek1984/r-enm:0.0.1
 ```
 
 The command will print the ID of the new container and exit. Now you can
