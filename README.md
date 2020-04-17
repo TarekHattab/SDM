@@ -3,34 +3,22 @@ SDM
 
 This R script comes with the following research article:
 
-Frida Ben Rais Lasram, Tarek Hattab, Quentin Nogues, Grégory Beaugrand,
-Jean Claude Dauvin, Ghassen Halouani, François Le Loc’h, Nathalie
-Niquil, Boris Leroy, (2020). An open-source framework to model present and future marine species distributions at local scale (currently under review in Ecological informatics).
+Frida Ben Rais Lasram, Tarek Hattab, Quentin Nogues, Grégory Beaugrand, Jean Claude Dauvin, Ghassen Halouani, François Le Loc’h, Nathalie Niquil, Boris Leroy, (2020). An open-source framework to model present and future marine species distributions at local scale (currently under review in Ecological informatics).
 
-It includes (i) a procedure for homogenizing occurrence data to
-reduce the influence of sampling bias, (ii) a procedure for
-generating pseudo-absences, (iii) a hierarchical-filter approach
-(i.e. global Bioclimatic Envelope Models combined with local Habitat
-Models), (iv) full incorporation of the third dimension by considering
-climatic variables at multiple depths and (v) building of maps that
-predict current and future ranges of marine species.
+It includes (i) a procedure for homogenizing occurrence data to reduce the influence of sampling bias, (ii) a procedure for
+generating pseudo-absences, (iii) a hierarchical-filter approach (i.e. global Bioclimatic Envelope Models combined with local Habitat Models), (iv) full incorporation of the third dimension by considering climatic variables at multiple depths and (v) building of maps that predict current and future ranges of marine species.
 
 ### Running the script inside a docker container
 
-If you want to launch RStudio inside of a *Docker* container, first of
-all you have to install Docker.
+If you want to launch RStudio inside of a *Docker* container, first of all you have to install Docker.
 
-Then you will have to run an image of RStudio Server containing all the
-R packages and their system dependencies.
+Then you will have to run an image of RStudio Server containing all the R packages and their system dependencies.
 
 ``` r
 docker run -d -p 8787:8787 -e PASSWORD="secret" tarek1984/r-enm:0.0.1
 ```
 
-The command will print the ID of the new container and exit. Now you can
-open your browser at <http://localhost:8787>, enter “rstudio” as
-unsername, and “secret” as password. If you are running a Mac or Windows machine
-open a browser and enter ```http://``` followed by your ip address, followed by ```:8787```.
+The command will print the ID of the new container and exit. Now you can open your browser at <http://localhost:8787>, enter “rstudio” as unsername, and “secret” as password. If you are running a Mac or Windows machine open a browser and enter ```http://``` followed by your ip address, followed by ```:8787```.
 
 ### Load required libraries
 
@@ -63,9 +51,7 @@ setwd("/home/tarek/Bureau/SDM")
 
 ### Global parameters
 
-Four parameters need to be set by users: (i) the species scientific name
-(ii) the species’ vertical habitat (iii) the list of algorithms to be
-used and (iv) the choice of K in K-fold cross-validation.
+Four parameters need to be set by users: (i) the species scientific name (ii) the species’ vertical habitat (iii) the list of algorithms to be used and (iv) the choice of K in K-fold cross-validation.
 
 ``` r
 Species<-"Mullus surmuletus" # The scientific name of the species
@@ -76,15 +62,10 @@ k <- 3 # Numbers of k in the  k-fold validation
 
 ### Import and preprocess environmental data
 
-For model calibration, the script considers temperature and salinity
-climatologies from the global database WOD 2013 V2
-(<https://www.nodc.noaa.gov/OC5/woa13/>). See *step 2* in model
-framework section in Ben Rais Lasram et al (2020).
+For model calibration, the script considers temperature and salinity climatologies from the global database WOD 2013 V2
+(<https://www.nodc.noaa.gov/OC5/woa13/>). See *step 2* in model framework section in Ben Rais Lasram et al (2020).
 
-Note that the script uses average temperature and salinity on the first
-50m depth for the calibration of the pelagic species models, on the
-first 200m depth for the benthopelagic species and on the last 50m depth
-for benthic and demersal species.
+Note that the script uses average temperature and salinity on the first 50m depth for the calibration of the pelagic species models, on the first 200m depth for the benthopelagic species and on the last 50m depth for benthic and demersal species.
 
 ``` r
 #Download climatic data for each time period
@@ -141,11 +122,7 @@ TemperatureL <- brick(get(load("Temperature_2005_2012_local.RData")))
 SalinityL <- brick(get(load("Salinity_2005_2012_local.RData")))
 ```
 
-For projections, the script allows to use climate projections for
-2041-2050 and 2091-2100 under the RCP 2.6 (strong mitigation) and 8.5
-(high emission) scenarios of the IPCC (Intergovernmental Panel on
-Climate Change). See *step 2* in model framework section in Ben Rais
-Lasram et al (2020).
+For projections, the script allows to use climate projections for 2041-2050 and 2091-2100 under the RCP 2.6 (strong mitigation) and 8.5 (high emission) scenarios of the IPCC (Intergovernmental Panel on Climate Change). See *step 2* in model framework section in Ben Rais Lasram et al (2020).
 
 ``` r
 # Download local scale climate maps (GFDL-ESM2G_RCP2.6)
@@ -163,11 +140,8 @@ load("Delta_Salinity_GFDL-ESM2G_RCP2.6.RData")
 Salinity_GFDL_ESM2G_RCP2.6 <- SalinityL + Delta ;rm(Delta)
 ```
 
-Raw habitat data are available from EMODnet-bathymetry
-(<http://www.emodnet-bathymetry.eu/>) and EMODnet- seabedhabitats
-(<http://www.emodnet-seabedhabitats.eu/>) and has a 250m spatial
-resolution. See *step 2* in model framework section in Ben Rais Lasram
-et al (2020).
+Raw habitat data are available from EMODnet-bathymetry (<http://www.emodnet-bathymetry.eu/>) and EMODnet- seabedhabitats
+(<http://www.emodnet-seabedhabitats.eu/>) and has a 250m spatial resolution. See *step 2* in model framework section in Ben Rais Lasram et al (2020).
 
 ``` r
 # Download habitat data
@@ -190,7 +164,7 @@ spplot(habitat[,"Seafloor"],main="Example of habitat data (Seafloor)")
 
 <img src="SDM_files/figure-gfm/unnamed-chunk-12-2.png" style="display: block; margin: auto;" />
 
-For habitat models ordination axes will be used instead of the parameters themselves in order to reduce the multi colinearity between habitat variables.
+For habitat models ordination axes will be used instead of the parameters themselves in order to reduce the multicolinearity between habitat variables.
 
 ``` r
 # Ordination of the habitat parmeters
@@ -207,11 +181,7 @@ spplot(ordi[[1:4]],main="Ordination axes")
 
 ### Environnemental background
 
-The environnemental background is a grid encompassing all the
-combinations of temperature and salinity occurring at the global scale.
-It will be used in the environmental filtering of occurrences data
-and pseudo-absences generation. See *step 3* in model framework section
-in Ben Rais Lasram et al (2020).
+The environnemental background is a grid encompassing all the combinations of temperature and salinity occurring at the global scale. It will be used in the environmental filtering of occurrences data and pseudo-absences generation. See *step 3* in model framework section in Ben Rais Lasram et al (2020).
 
 ``` r
 # Realised climat (Historical)
@@ -279,9 +249,7 @@ spplot(Vertical.r,main="Environnemental backgound (0-200m)",xlab="Temperature",y
 
 ### Download occurrences data
 
-Species occurrences data can be obtained from 5 global biogeographic
-database (see *step 2* in model framework section in Ben Rais Lasram et
-al (2020)): 
+Species occurrences data can be obtained from 5 global biogeographic database (see *step 2* in model framework section in Ben Rais Lasram et al (2020)): 
  * OBIS (Ocean Biogeographic Information System) <http://www.iobis.org/> 
  * GBIF (Global Biodiversity Information Facility) <http://www.gbif.org/> 
  * iNaturalist (A Community for Naturalists) <http://www.inaturalist.org> 
@@ -424,8 +392,7 @@ writeOGR(obj = OCC, layer = as.character(data[1, 1]),
 
 ### Bioclimatic Envelope Modelling
 
-The bioclimatic envelope modelling procedure is descibed in *step 4* in
-model framework section in Ben Rais Lasram et al (2020).
+The bioclimatic envelope modelling procedure is descibed in *step 4* in model framework section in Ben Rais Lasram et al (2020).
 
 ``` r
 # Create empty object to save validation results
@@ -614,14 +581,7 @@ future_distribution <- as(Biomod_future@proj@val, "SpatialPixelsDataFrame")
 
 ### Bioclimatic Envelope Model averaging
 
-Ensemble suitability maps are obtained by calculating the average
-suitability among all predictions weighted by the CBI to account for
-model-based uncertainty (see *step 4* in model framework section in Ben
-Rais Lasram et al (2020)).These maps can then be transformed into binary
-maps using the probability threshold optimizing the TSS. In addition,
-uncertainty maps are computed by calculating the standard deviation
-among
-predictions.
+Ensemble suitability maps are obtained by calculating the average suitability among all predictions weighted by the CBI to account for model-based uncertainty (see *step 4* in model framework section in Ben Rais Lasram et al (2020)).These maps can then be transformed into binary maps using the probability threshold optimizing the TSS. In addition, uncertainty maps are computed by calculating the standard deviation among predictions.
 
 ``` r
 for (i in 1:4){Validation[grep(Validation$Model.name,pattern = as.character(i)), "Rep"] <- i}
@@ -723,8 +683,7 @@ save(averaging.future, file = paste("Outputs/Bioclimatic_Envelope_Future_", Spec
 
 ### Habitat modelling
 
-The habitat models, used only for benthic and demersal species (see
-*step 5* in model framework section in Ben Rais Lasram et al (2020))
+The habitat models, used only for benthic and demersal species (see *step 5* in model framework section in Ben Rais Lasram et al (2020))
 
 ``` r
 if(Vertical_habitat %in% c("Benthic","Demersal")){
@@ -820,8 +779,7 @@ if(Vertical_habitat %in% c("Benthic","Demersal")){
 
 ### Habitat model averaging
 
-Ensemble suitability maps are obtained by calculating the average
-suitability among all predictions.
+Ensemble suitability maps are obtained by calculating the average suitability among all predictions.
 
 ``` r
 if(Vertical_habitat %in% c("Benthic","Demersal")) {
@@ -887,10 +845,7 @@ if(Vertical_habitat %in% c("Benthic","Demersal")) {
 
 ### Hierarchical filtering
 
-For benthic and demersal species, bioclimatic envelope and habitat maps
-are combined. See *step 6* in model framework section in Ben Rais Lasram
-et al
-(2020).
+For benthic and demersal species, bioclimatic envelope and habitat maps are combined. See *step 6* in model framework section in Ben Rais Lasram et al (2020).
 
 ``` r
 if(Vertical_habitat %in% c("Benthic","Demersal") & exists("averaging.map")) {
