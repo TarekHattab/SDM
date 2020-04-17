@@ -1,16 +1,14 @@
 SDM
 ================
 
-This R script accompanies the following research article:
+This R script comes with the following research article:
 
 Frida Ben Rais Lasram, Tarek Hattab, Quentin Nogues, Grégory Beaugrand,
 Jean Claude Dauvin, Ghassen Halouani, François Le Loc’h, Nathalie
-Niquil, Boris Leroy, (2020). An open-source framework to project
-potential future distributions of marine species at local scale
-(currently under review in Ecological informatics).
+Niquil, Boris Leroy, (2020). An open-source framework to model present and future marine species distributions at local scale (currently under review in Ecological informatics).
 
 It includes (i) a procedure for homogenizing occurrence data to
-eliminate the influence of sampling bias, (ii) a procedure for
+reduce the influence of sampling bias, (ii) a procedure for
 generating pseudo-absences, (iii) a hierarchical-filter approach
 (i.e. global Bioclimatic Envelope Models combined with local Habitat
 Models), (iv) full incorporation of the third dimension by considering
@@ -65,7 +63,7 @@ setwd("/home/tarek/Bureau/SDM")
 
 ### Global parameters
 
-Four parameters must be set by users: (i) the species scientific name
+Four parameters need to be set by users: (i) the species scientific name
 (ii) the species’ vertical habitat (iii) the list of algorithms to be
 used and (iv) the choice of K in K-fold cross-validation.
 
@@ -78,7 +76,7 @@ k <- 3 # Numbers of k in the  k-fold validation
 
 ### Import and preprocess environmental data
 
-For model calibration, the script consider temperature and salinity
+For model calibration, the script considers temperature and salinity
 climatologies from the global database WOD 2013 V2
 (<https://www.nodc.noaa.gov/OC5/woa13/>). See *step 2* in model
 framework section in Ben Rais Lasram et al (2020).
@@ -192,9 +190,7 @@ spplot(habitat[,"Seafloor"],main="Example of habitat data (Seafloor)")
 
 <img src="SDM_files/figure-gfm/unnamed-chunk-12-2.png" style="display: block; margin: auto;" />
 
-For habitat models ordination axes will be used and not the parameters
-themself in order to reduce the multi colinearity between habitat
-variables.
+For habitat models ordination axes will be used instead of the parameters themselves in order to reduce the multi colinearity between habitat variables.
 
 ``` r
 # Ordination of the habitat parmeters
@@ -209,11 +205,11 @@ spplot(ordi[[1:4]],main="Ordination axes")
 
 <img src="SDM_files/figure-gfm/unnamed-chunk-13-1.png" style="display: block; margin: auto;" />
 
-### Environnemental backgound
+### Environnemental background
 
-The environnemental backgound is a grid encompassing all the
+The environnemental background is a grid encompassing all the
 combinations of temperature and salinity occurring at the global scale.
-It will be used to make the environmental filtering of occurrences data
+It will be used in the environmental filtering of occurrences data
 and pseudo-absences generation. See *step 3* in model framework section
 in Ben Rais Lasram et al (2020).
 
@@ -380,12 +376,7 @@ plot(OCC,add=T,col=2,cex=0.3,pch=15)
 
 ### Match up
 
-A spatiotemporal match-up between climatic climatologies and species
-occurrences is realised taking into account, the geographic coordinates
-of occurrences as well as their corresponding decade and the right
-vertical layer that corresponds to the vertical habitat of the focal
-species (see *step 3* in model framework section in Ben Rais Lasram et
-al (2020)).
+A spatiotemporal match-up between climatic climatologies and species occurrences is realised, taking into account the geographic coordinates of occurrences as well as their corresponding decade and the vertical layer that corresponds to the vertical habitat of the considered species (see *step 3* in model framework section in Ben Rais Lasram et al (2020)).
 
 ``` r
 # Load occurences from shapefile
@@ -623,7 +614,7 @@ future_distribution <- as(Biomod_future@proj@val, "SpatialPixelsDataFrame")
 
 ### Bioclimatic Envelope Model averaging
 
-Ensemble suitability maps are obtained by calculated the average
+Ensemble suitability maps are obtained by calculating the average
 suitability among all predictions weighted by the CBI to account for
 model-based uncertainty (see *step 4* in model framework section in Ben
 Rais Lasram et al (2020)).These maps can then be transformed into binary
@@ -829,7 +820,7 @@ if(Vertical_habitat %in% c("Benthic","Demersal")){
 
 ### Habitat model averaging
 
-Ensemble suitability maps are obtained by calculated the average
+Ensemble suitability maps are obtained by calculating the average
 suitability among all predictions.
 
 ``` r
