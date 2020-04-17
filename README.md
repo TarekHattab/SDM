@@ -55,8 +55,8 @@ Four parameters need to be set by users: (i) the species scientific name (ii) th
 
 ``` r
 Species<-"Mullus surmuletus" # The scientific name of the species
-Vertical_habitat<-"Demersal" #  it can take one of the following applelations: Benthopelagic","Pelagic","Benthic","Demersal
-models <- c('GLM', 'GBM', 'GAM', 'CTA', 'ANN', 'FDA', 'RF')
+Vertical_habitat<-"Demersal" #  it can take one of the following applelations: "Benthopelagic","Pelagic","Benthic","Demersal"
+models <- c('GLM', 'GBM', 'GAM', 'CTA', 'ANN', 'FDA', 'RF') #  it can take one of the following applelations: GLM', 'GBM', 'GAM', 'CTA', 'ANN', 'FDA', 'RF', "MARS"
 k <- 3 # Numbers of k in the  k-fold validation
 ```
 
