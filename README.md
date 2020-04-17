@@ -46,7 +46,7 @@ library(biogeonetworks)
 ### Set working directory
 
 ``` r
-setwd("/home/tarek/Bureau/SDM")
+setwd("/home/...")
 ```
 
 ### Global parameters
