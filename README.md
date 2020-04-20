@@ -31,7 +31,7 @@ library(maptools)
 library(raster)
 library(SDMTools)
 library(gridExtra)
-library(biomod2)
+library(biomod2) # If you are not using Docker container please install the Github version of the package devtools::install_github("biomodhub/biomod2",  dependencies=TRUE)
 library(PresenceAbsence)
 library(rgeos)
 library(plyr)
@@ -40,7 +40,7 @@ library(ade4)
 library(rworldmap)
 require(stringr)
 library(colorRamps)
-library(biogeonetworks)
+library(biogeonetworks) # If you are not using Docker container please install the Github version of the package devtools::install_github("Farewe/biogeonetworks", dependencies=TRUE)
 ```
 
 ### Set working directory
