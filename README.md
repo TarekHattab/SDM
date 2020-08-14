@@ -3,7 +3,7 @@ SDM
 
 This R script comes with the following research article:
 
-Frida Ben Rais Lasram, Tarek Hattab, Quentin Nogues, Grégory Beaugrand, Jean Claude Dauvin, Ghassen Halouani, François Le Loc’h, Nathalie Niquil, Boris Leroy, (2020). An open-source framework to model present and future marine species distributions at local scale (currently under review in Ecological informatics).
+Frida Ben Rais Lasram, Tarek Hattab, Quentin Nogues, Grégory Beaugrand, Jean Claude Dauvin, Ghassen Halouani, François Le Loc’h, Nathalie Niquil, Boris Leroy, (2020). An open-source framework to model present and future marine species distributions at local scale. Ecological Informatics, 101130.
 
 It includes (i) a procedure for homogenizing occurrence data to reduce the influence of sampling bias, (ii) a procedure for
 generating pseudo-absences, (iii) a hierarchical-filter approach (i.e. global Bioclimatic Envelope Models combined with local Habitat Models), (iv) full incorporation of the third dimension by considering climatic variables at multiple depths and (v) building of maps that predict current and future ranges of marine species.
