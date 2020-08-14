@@ -263,6 +263,7 @@ occOBIS$year <- as.numeric(substr(as.character(occOBIS$date), 1, 4))
 occOther <- occ(query=as.character(data[1, 1]),
                 from=c("gbif", "bison", "inat", "ebird", "ecoengine", "vertnet"),
                 has_coords = T,limit = 100000) # Download
+rgbif::gbif_citation(occ2df(occOther)$key[1])$citation$citation
 occOther <- occ2df(occOther, "all")
 occOther <- data.frame(longitude = as.numeric(occOther$data[, 2]),
                        latitude = as.numeric(occOther$data[, 3]),
